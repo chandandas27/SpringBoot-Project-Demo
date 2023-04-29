@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.chandan.springbootdemo.error.EmployeeNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.chandan.springbootdemo.model.Employee;
@@ -34,7 +35,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 				.stream()
 				.filter(employee -> employee.getEmployeeId().equalsIgnoreCase(id))
 				.findFirst()
+				.orElseThrow(() -> new EmployeeNotFoundException(""+ "Employee not found with Id:"+id));
+
+	}
+
+	@Override
+	public String deleteEmployeeById(String id) {
+		Employee employee
+				= employees
+				.stream()
+				.filter(e->e.getEmployeeId().equalsIgnoreCase(id))
+				.findFirst()
 				.get();
+
+		employees.remove(employee);
+		return "Employee deleted with the id"+id;
 	}
 
 }
