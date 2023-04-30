@@ -3,6 +3,7 @@ package com.chandan.springbootdemo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import com.chandan.springbootdemo.model.Employee;
@@ -11,7 +12,8 @@ import com.chandan.springbootdemo.service.EmployeeService;
 @RestController
 @RequestMapping("/v1/employees")
 public class EmployeeController {
-	
+
+    @Qualifier("employeeServiceImpl")
 	@Autowired
 	private EmployeeService employeeService;
 

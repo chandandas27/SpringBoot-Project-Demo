@@ -49,7 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				.get();
 
 		employees.remove(employee);
-		return "Employee deleted with the id"+id;
+		return "Employee deleted with the id: "+id;
 	}
 
 }
